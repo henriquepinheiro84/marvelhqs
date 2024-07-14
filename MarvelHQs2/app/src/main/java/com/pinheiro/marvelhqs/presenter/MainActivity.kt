@@ -1,4 +1,4 @@
-package com.pinheiro.marvelhqs
+package com.pinheiro.marvelhqs.presenter
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
