@@ -66,4 +66,28 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // Koin dependency
+    implementation(libs.koin.android)
+    // Pagination
+    implementation(libs.androidx.paging.runtime)
+    // alternatively - without Android dependencies for tests
+    testImplementation(libs.androidx.paging.common)
+    // optional - RxJava2 support
+    implementation(libs.androidx.paging.rxjava2)
+    // optional - RxJava3 support
+    implementation(libs.androidx.paging.rxjava3)
+    // optional - Guava ListenableFuture support
+    implementation(libs.androidx.paging.guava)
+    // optional - Jetpack Compose integration
+    implementation(libs.androidx.paging.compose)
+    //Room database
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+    // optional - Paging 3 Integration
+    implementation(libs.androidx.room.paging)
+    // optional - Test helpers
+    testImplementation(libs.androidx.room.testing)
+
 }
