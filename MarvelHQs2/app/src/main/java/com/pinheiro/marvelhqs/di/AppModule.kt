@@ -5,14 +5,13 @@ import com.pinheiro.marvelhqs.data.repository.Constants.NETWORK_BASE_URL
 import com.pinheiro.marvelhqs.data.repository.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.CharacterNetworkImpl
 import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
-import com.pinheiro.marvelhqs.domain.GetCharactersUseCase
+import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
 import com.pinheiro.marvelhqs.presenter.MarvelViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 
 val appModule = module {
 single<CharactersService> {

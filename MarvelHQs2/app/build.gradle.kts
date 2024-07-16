@@ -122,4 +122,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation( libs.koin.androidx.compose)
+    // Coil Compose
+    implementation(libs.coil.compose)
+    implementation(platform(libs.androidx.compose.bom))
 }

@@ -11,13 +11,13 @@ class CharacterNetworkImpl(
 ) : ICharacterRepository {
     @OptIn(ExperimentalStdlibApi::class)
     override suspend fun getCharacter(): CharacterResponse {
-        val ts = "1"
+        val ts = "2"
         val publicKey = BuildConfig.PUBLIC_KEY
         val privateKey = BuildConfig.PRIVATE_KEY
         val codeToHash = ts + privateKey + publicKey
         val md = MessageDigest.getInstance("MD5")
         val hash = md.digest(codeToHash.toByteArray())
 
-        return charactersService.getCharacteres("1", BuildConfig.PUBLIC_KEY,hash.toHexString())
+        return charactersService.getCharacteres(ts, BuildConfig.PUBLIC_KEY,hash.toHexString())
     }
 }

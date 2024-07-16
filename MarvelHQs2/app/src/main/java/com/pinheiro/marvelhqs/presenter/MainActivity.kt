@@ -1,27 +1,27 @@
 package com.pinheiro.marvelhqs.presenter
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import com.pinheiro.marvelhqs.domain.GetCharactersUseCase
+import androidx.compose.ui.unit.dp
+import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.ui.theme.MarvelHQsTheme
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.androidx.viewmodel.factory.KoinViewModelFactory
 
 class MainActivity : ComponentActivity() {
 
@@ -29,32 +29,45 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      
+
         setContent {
             MarvelHQsTheme {
                 // A surface container using the 'background' color from the theme
 //                val factory = KoinViewModelFactory(LocalContext.current, )
                 val viewModel: MarvelViewModel = koinViewModel()
-                var text = viewModel.test.collectAsState(initial = "Apertar aqui")
-                    Surface(
+                val comics = viewModel.comics.collectAsState(initial = null)
+                viewModel.getCharacters()
+                LazyColumn(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Greeting("Android")
-                    Button(onClick = {   viewModel.getCharacters()}) {
-                        Text(text = text.value)
+                    comics.value?.let {comics ->
+                        items(comics)  {comic ->
+                            comic.id?.let {
+                                ComicItem(
+                                    comic = comic,
+                                    modifier = Modifier.fillMaxWidth()
+                                    )
+                            }
+//                            if (it != null) {
+//                                ComicItem(
+//                                    comic = it,
+//                                    modifier = Modifier.fillMaxWidth()
+//                                )
+//                            }
+                        }
 
-
-                        
                     }
-
                 }
+
             }
         }
     }
 }
+
 @Composable
-fun toast(){
+fun toast() {
     val context = LocalContext.current
 
 }

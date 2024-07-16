@@ -4,16 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.pinheiro.marvelhqs.domain.GetCharactersUseCase
+import com.pinheiro.marvelhqs.domain.DataState
+import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
+import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
@@ -21,14 +16,19 @@ class MarvelViewModel(
     private val getCharactersUseCase: GetCharactersUseCase
 ) : ViewModel() {
 
-    private val _test = MutableSharedFlow<String>()
-    val test = _test.asSharedFlow()
-    var teste by mutableStateOf("")
-        private set
+    private val _error = MutableSharedFlow<String>()
+    val error = _error.asSharedFlow()
+
+    private val _comics = MutableSharedFlow<List<ComicViewObject>>()
+    val comics = _comics.asSharedFlow()
     fun getCharacters() {
         viewModelScope.launch {
             getCharactersUseCase().collect {
-               _test.emit(it)
+                if (it.error?.isNotEmpty() == true) {
+                    _error.emit(it.error)
+                    return@collect
+                }
+                it.data?.let { comicsList -> _comics.emit(comicsList) }
             }
         }
     }
