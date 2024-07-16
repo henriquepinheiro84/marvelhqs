@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -8,18 +10,40 @@ android {
     compileSdk = 34
 
     defaultConfig {
+
+
+
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(localPropertiesFile.inputStream())
+        val privateApiKey = properties.getProperty("PRIVATE_KEY")
+        val publicApiKey = properties.getProperty("PUBLIC_KEY")
+
+        buildConfigField(
+            type = "String",
+            name = "PRIVATE_KEY",
+            value = privateApiKey
+        )
+
+        buildConfigField(
+            type = "String",
+            name = "PUBLIC_KEY",
+            value = publicApiKey
+        )
+
         applicationId = "com.pinheiro.marvelhqs"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+            android.buildFeatures.buildConfig = true
         }
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -89,5 +113,13 @@ dependencies {
     implementation(libs.androidx.room.paging)
     // optional - Test helpers
     testImplementation(libs.androidx.room.testing)
-
+    // Retrofit
+    implementation(libs.retrofit)
+// Retrofit with Scalar Converter
+    implementation(libs.converter.scalars)
+    implementation(libs.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation( libs.koin.androidx.compose)
 }
