@@ -5,6 +5,6 @@ import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.presenter.Comics
 
 interface ICharacterDataBaseRepository {
-    fun saveComic(comicViewObject: ComicDTO)
+    fun saveComic(comicDTO: ComicDTO)
     fun getComics(): List<ComicDTO>
 }
