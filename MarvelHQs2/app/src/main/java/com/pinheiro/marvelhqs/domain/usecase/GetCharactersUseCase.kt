@@ -34,8 +34,6 @@ class GetCharactersUseCase(
             variantDescription = null,
             description = null,
             pageCount = null,
-            images = null,
-            thumbnail = null,
         ))
         return Result.success(mock)
 
