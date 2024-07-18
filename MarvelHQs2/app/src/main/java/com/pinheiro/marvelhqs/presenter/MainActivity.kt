@@ -33,64 +33,89 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
+import androidx.navigation.compose.rememberNavController
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
+import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginScreen
 import com.pinheiro.marvelhqs.presenter.ui.comic.ComicScreen
 import com.pinheiro.marvelhqs.presenter.ui.theme.MarvelHQsTheme
+import com.pinheiro.marvelhqs.presenter.ui.viewmodels.AuthViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
+import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
-
-//    val viewModel: MarvelViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             MarvelHQsTheme {
-                ComicScreen()
+//                ComicScreen()
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = Home) {
+                    navigation<Home>(startDestination = Login) {
+                        composable<Login> {
+                            val viewModel = it.sharedViewModel<AuthViewModel>(navController = navController)
+                            LoginScreen(navController = navController)
+                        }
+
+                        composable<Registration> {
+                            val viewModel = it.sharedViewModel<AuthViewModel>(navController = navController)
+
+                        }
+                    }
+
+                    navigation<Logged>(startDestination = Comics) {
+                        composable<Comics>{
+                            ComicScreen()
+                        }
+                        composable<Favorite> {
+
+                        }
+                    }
+                }
 
             }
         }
     }
 }
 
+@Serializable
+object Logged
+@Serializable
+object Home
+@Serializable
+object Login
+@Serializable
+object Registration
+
+@Serializable
+object Comics
+
+@Serializable
+object Favorite
+
+@Composable
+inline fun <reified T: ViewModel>NavBackStackEntry.sharedViewModel(navController: NavController): T {
+    val navGraphRoute = destination.parent?.route ?: return koinViewModel()
+    val parentEntery = remember(this) {
+        navController.getBackStackEntry(navGraphRoute)
+    }
+    return viewModel(parentEntery)
+}
+
+//@Preview(showBackground = true)
 //@Composable
-//fun NavigationBarTest() {
-//    var selectedItem by remember { mutableIntStateOf(0) }
-//    val items = listOf("Songs", "Artists", "Playlists")
-//
-//    NavigationBar {
-//        items.forEachIndexed { index, item ->
-//            NavigationBarItem(
-//                icon = { Icon(Icons.Filled.Favorite, contentDescription = item) },
-//                label = { Text(item) },
-//                selected = selectedItem == index,
-//                onClick = { selectedItem = index }
-//            )
-//        }
+//fun GreetingPreview() {
+//    MarvelHQsTheme {
+//        Greeting("Android")
 //    }
 //}
-
-@Composable
-fun toast() {
-    val context = LocalContext.current
-
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MarvelHQsTheme {
-        Greeting("Android")
-    }
-}
