@@ -2,7 +2,7 @@ package com.pinheiro.marvelhqs.di
 
 import com.google.gson.GsonBuilder
 import com.pinheiro.marvelhqs.data.repository.Constants.NETWORK_BASE_URL
-import com.pinheiro.marvelhqs.data.repository.interfaces.ICharacterRepository
+import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.CharacterNetworkImpl
 import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
 import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase

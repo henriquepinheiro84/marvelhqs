@@ -44,7 +44,7 @@ fun ComicItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
-                .padding(16.dp)
+                .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
             AsyncImage(
                 model = imagePath ,
@@ -56,7 +56,6 @@ fun ComicItem(
             Spacer(modifier = Modifier.width(16.dp))
             Column(
                 modifier = Modifier
-                    .weight(3f)
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.Center
             ) {
@@ -77,13 +76,13 @@ fun ComicItem(
                     text = comic?.description ?: "No description",
                     modifier = Modifier.fillMaxWidth()
                 )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "First brewed in ${comic?.variantDescription}",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.End,
-                    fontSize = 8.sp
-                )
+//                Spacer(modifier = Modifier.height(8.dp))
+//                Text(
+//                    text = "First brewed in ${comic?.variantDescription}",
+//                    modifier = Modifier.fillMaxWidth(),
+//                    textAlign = TextAlign.End,
+//                    fontSize = 8.sp
+//                )
             }
         }
     }

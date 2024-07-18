@@ -115,8 +115,7 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     // Retrofit
     implementation(libs.retrofit)
-// Retrofit with Scalar Converter
-    implementation(libs.converter.scalars)
+    implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -125,4 +124,6 @@ dependencies {
     // Coil Compose
     implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.ui.graphics)
+
 }

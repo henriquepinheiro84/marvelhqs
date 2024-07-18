@@ -1,4 +1,4 @@
-package com.pinheiro.marvelhqs.ui.theme
+package com.pinheiro.marvelhqs.presenter.ui.theme
 
 import android.app.Activity
 import android.os.Build

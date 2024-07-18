@@ -1,6 +1,6 @@
 package com.pinheiro.marvelhqs.domain.usecase
 
-import com.pinheiro.marvelhqs.data.repository.interfaces.ICharacterRepository
+import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.domain.DataState
 import com.pinheiro.marvelhqs.domain.Errors
 import com.pinheiro.marvelhqs.domain.mapper.comicDTOListTOComicViewObjectList
@@ -15,17 +15,29 @@ class GetCharactersUseCase(
 
 
     @OptIn(ExperimentalStdlibApi::class)
-    suspend operator fun invoke(): Flow<DataState<List<ComicViewObject>>> = flow {
+    suspend operator fun invoke(limit: String, offset: String): Result<List<ComicViewObject>> {
 //         emit(characterNetworkRepository.getCharacter().code.toString())
-        val comicDataWrapper = characterNetworkRepository.getCharacter()
+//        return DataState.loading()
+        val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset)
         val responseCode = comicDataWrapper.code
         if (isResponseError(responseCode)) {
-            emit(DataState.error(getErrorMessage(responseCode)))
-            return@flow
+//            return DataState.error(getErrorMessage(responseCode))
         }
         val comicDataContainer = comicDataWrapper.data
         val comicViewObjectList = comicDataContainer?.results?.comicDTOListTOComicViewObjectList()
-        comicViewObjectList?.let { emit(DataState.success(it)) }
+        comicViewObjectList?.let { return Result.success(it) }
+//        return DataState.error("")
+        val mock = arrayListOf(ComicViewObject(
+            id = null,
+            title = null,
+            issueNumber = null,
+            variantDescription = null,
+            description = null,
+            pageCount = null,
+            images = null,
+            thumbnail = null,
+        ))
+        return Result.success(mock)
 
 
 
