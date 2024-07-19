@@ -14,20 +14,15 @@ class GetCharactersUseCase(
     private val characterNetworkRepository: ICharacterRepository
 ) {
 
-
     suspend operator fun invoke(limit: String, offset: String): Result<List<ComicViewObject>> {
-//         emit(characterNetworkRepository.getCharacter().code.toString())
-//        return DataState.loading()
         try {
             val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset)
             val responseCode = comicDataWrapper.code
             if (isResponseError(responseCode)) {
-//            return DataState.error(getErrorMessage(responseCode))
             }
             val comicDataContainer = comicDataWrapper.data
             val comicViewObjectList = comicDataContainer?.results?.comicDTOListTOComicViewObjectList()
             comicViewObjectList?.let { return Result.success(it) }
-//        return DataState.error("")
             val mock = arrayListOf(ComicViewObject(
                 id = null,
                 title = null,

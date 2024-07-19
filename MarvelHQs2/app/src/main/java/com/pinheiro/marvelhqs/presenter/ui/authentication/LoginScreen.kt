@@ -15,19 +15,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.pinheiro.marvelhqs.presenter.Logged
 import com.pinheiro.marvelhqs.presenter.ui.components.LogButton
 import com.pinheiro.marvelhqs.presenter.ui.components.PasswordField
 import com.pinheiro.marvelhqs.presenter.ui.components.UserField
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Logged
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(text = "Login")
-    }
+
    Column(
        verticalArrangement = Arrangement.Center,
        horizontalAlignment = Alignment.CenterHorizontally,

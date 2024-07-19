@@ -2,9 +2,7 @@ package com.pinheiro.marvelhqs.presenter.ui.comic
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pinheiro.marvelhqs.domain.mapper.comicDTOListTOComicViewObjectList
 import com.pinheiro.marvelhqs.domain.usecase.DeleteFavoriteUseCase
-import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import kotlinx.coroutines.flow.MutableSharedFlow

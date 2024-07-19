@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Marvel HQs</string>
+    <string name="LOG_OUT">Log out</string>
+    <string name="FAVORITE">Favorite</string>
 </resources>

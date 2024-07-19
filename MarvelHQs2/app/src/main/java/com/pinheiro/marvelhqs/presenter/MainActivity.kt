@@ -13,14 +13,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginScreen
-import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItem
-import com.pinheiro.marvelhqs.presenter.ui.comic.ComicScreen
-import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteScreen
 import com.pinheiro.marvelhqs.presenter.ui.navigation.ComicNavigation
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Comics
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Home
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Logged
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Login
+import com.pinheiro.marvelhqs.presenter.ui.navigation.Registration
 import com.pinheiro.marvelhqs.presenter.ui.theme.MarvelHQsTheme
-import com.pinheiro.marvelhqs.presenter.ui.viewmodels.AuthViewModel
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
@@ -31,37 +31,24 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MarvelHQsTheme {
-//                ComicScreen()
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = Home) {
                     navigation<Home>(startDestination = Login) {
                         composable<Login> {
-                            val viewModel = it.sharedViewModel<AuthViewModel>(navController = navController)
                             LoginScreen(navController = navController)
                         }
 
                         composable<Registration> {
-                            val viewModel = it.sharedViewModel<AuthViewModel>(navController = navController)
 
                         }
                     }
 
                     navigation<Logged>(startDestination = Comics) {
                         composable<Comics>{
-//                            ComicItem(comic = ComicViewObject(
-//                                null,
-//                                null,
-//                                null,
-//                                null,
-//                                null,
-//                                null,
-//                            ))
-//                            ComicScreen()
-                            ComicNavigation()
+
+                            ComicNavigation(navController)
                         }
-//                        composable<Favorite> {
-//                            FavoriteScreen()
-//                        }
+
                     }
                 }
 
@@ -70,17 +57,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Serializable
-object Logged
-@Serializable
-object Home
-@Serializable
-object Login
-@Serializable
-object Registration
-
-@Serializable
-object Comics
 
 //@Serializable
 //object Favorite
@@ -93,11 +69,3 @@ inline fun <reified T: ViewModel>NavBackStackEntry.sharedViewModel(navController
     }
     return viewModel(parentEntery)
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    MarvelHQsTheme {
-//        Greeting("Android")
-//    }
-//}

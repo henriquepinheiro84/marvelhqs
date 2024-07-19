@@ -26,9 +26,9 @@ const val TIME_OUT: Long = 30
 val appModule = module {
 single<CharactersService> {
     Retrofit.Builder().client(OkHttpClient().newBuilder()
-        .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
-        .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
-        .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .connectTimeout(TIME_OUT, TimeUnit.MINUTES)
+        .writeTimeout(TIME_OUT, TimeUnit.MINUTES)
+        .readTimeout(TIME_OUT, TimeUnit.MINUTES)
         .build())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .baseUrl(NETWORK_BASE_URL)
