@@ -2,9 +2,11 @@ package com.pinheiro.marvelhqs.data.repository.db.interfaces
 
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
-import com.pinheiro.marvelhqs.presenter.Comics
+import kotlinx.coroutines.flow.Flow
 
 interface ICharacterDataBaseRepository {
-    fun saveComic(comicDTO: ComicDTO)
-    fun getComics(): List<ComicDTO>
+   suspend fun saveComic(comicDTO: ComicDTO )
+    suspend fun getComics(): Flow<List<ComicDTO>?>
+
+    suspend fun deleteComic(comicDTO: ComicDTO)
 }

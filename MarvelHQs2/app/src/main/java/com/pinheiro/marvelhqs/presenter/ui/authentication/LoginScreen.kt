@@ -45,7 +45,9 @@ fun LoginScreen(navController: NavController) {
            submit = { /*TODO*/ })
        Spacer(modifier = Modifier.padding(horizontal = 18.dp))
        LogButton(text = "Login") {
-           navController.navigate(Logged)
+           navController.navigate(Logged) {
+               popUpTo(0)
+           }
        }
        Spacer(modifier = Modifier.padding(horizontal = 18.dp))
        LogButton(text = "Cadastrar") {

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
+    id("io.realm.kotlin")
 }
 
 android {
@@ -130,5 +131,8 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.material.icons.extended.android)
+    implementation(libs.paperdb)
+    implementation(libs.library.base)
+    implementation(libs.library.base.v210)
 
 }

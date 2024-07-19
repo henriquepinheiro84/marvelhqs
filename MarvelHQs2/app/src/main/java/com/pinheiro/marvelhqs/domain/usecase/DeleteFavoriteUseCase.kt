@@ -4,11 +4,12 @@ import com.pinheiro.marvelhqs.data.repository.db.interfaces.ICharacterDataBaseRe
 import com.pinheiro.marvelhqs.domain.mapper.comicViewObjectToComicDTOMapper
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 
-class SaveFavoriteUseCase(
+class DeleteFavoriteUseCase(
     val repository: ICharacterDataBaseRepository
+
 ) {
     suspend operator fun invoke(comicViewObject: ComicViewObject) {
-     repository.saveComic(comicViewObject.comicViewObjectToComicDTOMapper())
-
+        repository.deleteComic(comicViewObject.comicViewObjectToComicDTOMapper())
     }
+
 }

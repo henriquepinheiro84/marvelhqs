@@ -8,34 +8,39 @@ import com.pinheiro.marvelhqs.domain.mapper.comicDataContainerDTOToComicDataCont
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.util.concurrent.TimeoutException
 
 class GetCharactersUseCase(
     private val characterNetworkRepository: ICharacterRepository
 ) {
 
 
-    @OptIn(ExperimentalStdlibApi::class)
     suspend operator fun invoke(limit: String, offset: String): Result<List<ComicViewObject>> {
 //         emit(characterNetworkRepository.getCharacter().code.toString())
 //        return DataState.loading()
-        val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset)
-        val responseCode = comicDataWrapper.code
-        if (isResponseError(responseCode)) {
+        try {
+            val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset)
+            val responseCode = comicDataWrapper.code
+            if (isResponseError(responseCode)) {
 //            return DataState.error(getErrorMessage(responseCode))
-        }
-        val comicDataContainer = comicDataWrapper.data
-        val comicViewObjectList = comicDataContainer?.results?.comicDTOListTOComicViewObjectList()
-        comicViewObjectList?.let { return Result.success(it) }
+            }
+            val comicDataContainer = comicDataWrapper.data
+            val comicViewObjectList = comicDataContainer?.results?.comicDTOListTOComicViewObjectList()
+            comicViewObjectList?.let { return Result.success(it) }
 //        return DataState.error("")
-        val mock = arrayListOf(ComicViewObject(
-            id = null,
-            title = null,
-            issueNumber = null,
-            variantDescription = null,
-            description = null,
-            pageCount = null,
-        ))
-        return Result.success(mock)
+            val mock = arrayListOf(ComicViewObject(
+                id = null,
+                title = null,
+                issueNumber = null,
+                variantDescription = null,
+                description = null,
+                pageCount = null,
+            ))
+            return Result.success(mock)
+
+        } catch (e: TimeoutException) {
+            return Result.failure(e)
+        }
 
 
 

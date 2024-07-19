@@ -1,27 +1,35 @@
 package com.pinheiro.marvelhqs.di
 
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.google.gson.GsonBuilder
 import com.pinheiro.marvelhqs.data.repository.Constants.NETWORK_BASE_URL
-import com.pinheiro.marvelhqs.data.repository.db.CharacterDataBaseRepository
-import com.pinheiro.marvelhqs.data.repository.db.room.AppDataBase
+import com.pinheiro.marvelhqs.data.repository.db.paper.CharacterDataBaseRepository
+import com.pinheiro.marvelhqs.data.repository.db.interfaces.ICharacterDataBaseRepository
+import com.pinheiro.marvelhqs.data.repository.db.realm.CharacterRealmRepository
 import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.CharacterNetworkImpl
 import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
+import com.pinheiro.marvelhqs.domain.usecase.DeleteFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
+import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
 import com.pinheiro.marvelhqs.presenter.MarvelViewModel
-import org.koin.android.ext.koin.androidApplication
+import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItemViewModel
+import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteVIewModel
+import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+import java.util.concurrent.TimeUnit
+const val TIME_OUT: Long = 30
 val appModule = module {
 single<CharactersService> {
-    Retrofit.Builder()
+    Retrofit.Builder().client(OkHttpClient().newBuilder()
+        .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .build())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .baseUrl(NETWORK_BASE_URL)
         .build()
@@ -33,17 +41,16 @@ single<CharactersService> {
     } bind ICharacterRepository::class
 
     viewModel {
-        MarvelViewModel(get())
+        MarvelViewModel(get(), get())
     }
 
-    single<RoomDatabase> {
-          Room.databaseBuilder(
-            androidApplication(),
-            AppDataBase::class.java, "marvel-db"
-        ).build()
-    }
+
 
     factory { SaveFavoriteUseCase(get()) }
-    single { CharacterDataBaseRepository(get()) } bind CharacterDataBaseRepository::class
+    factory { ComicItemViewModel(get(), get()) }
+    factory { FavoriteVIewModel(get()) }
+    factory { GetFavoriteUseCase(get()) }
+    factory { DeleteFavoriteUseCase(get()) }
+    factory { CharacterRealmRepository() } bind ICharacterDataBaseRepository::class
 
 }

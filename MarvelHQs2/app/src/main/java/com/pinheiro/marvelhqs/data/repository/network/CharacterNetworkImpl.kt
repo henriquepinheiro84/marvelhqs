@@ -11,8 +11,6 @@ class CharacterNetworkImpl(
 ) : ICharacterRepository {
     @OptIn(ExperimentalStdlibApi::class)
     override suspend fun getCharacter(limit: String, offset: String): CharacterResponse {
-//        val limit = "20"
-//        val offset = "0"
         val ts = "1"
         val publicKey = BuildConfig.PUBLIC_KEY
         val privateKey = BuildConfig.PRIVATE_KEY

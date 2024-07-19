@@ -1,11 +1,14 @@
 package com.pinheiro.marvelhqs.presenter.ui.navigation
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
@@ -35,8 +38,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.pinheiro.marvelhqs.presenter.ui.comic.ComicScreen
+import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteScreen
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,19 +58,24 @@ fun ComicNavigation() {
             title = "All",
             selectedIcon = Icons.Filled.Home,
             unselectedIcon = Icons.Outlined.Home,
+            route = "home"
+
         ),
         NavigationItem(
-            title = "Urgent",
-            selectedIcon = Icons.Filled.Info,
-            unselectedIcon = Icons.Outlined.Info,
-            badgeCount = 45
+            title = "Favorite",
+            selectedIcon = Icons.Default.Favorite,
+            unselectedIcon = Icons.Default.FavoriteBorder,
+            badgeCount = 45,
+            route = "favorite"
         ),
-        NavigationItem(
-            title = "Settings",
-            selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Outlined.Settings,
-        ),
+//        NavigationItem(
+//            title = "Settings",
+//            selectedIcon = Icons.Filled.Settings,
+//            unselectedIcon = Icons.Outlined.Settings,
+//        ),
     )
+
+    val navController = rememberNavController()
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -82,7 +98,9 @@ fun ComicNavigation() {
                             },
                             selected = index == selectedItemIndex,
                             onClick = {
-//                                            navController.navigate(item.route)
+                                navController.navigate(item.route)  {
+                                    popUpTo(0)
+                                }
                                 selectedItemIndex = index
                                 scope.launch {
                                     drawerState.close()
@@ -114,7 +132,7 @@ fun ComicNavigation() {
                 topBar = {
                     TopAppBar(
                         title = {
-                            Text(text = "Todo App")
+                            Text(text = "Marvel")
                         },
                         navigationIcon = {
                             IconButton(onClick = {
@@ -132,15 +150,38 @@ fun ComicNavigation() {
                 }
             ) {
 
+                NavHost(navController = navController, startDestination = "home") {
+                    composable("home") {
+                        ComicScreen()
+                    }
+                    composable("favorite") {
+                        FavoriteScreen()
+                    }
+                }
+
             }
         }
     }
 }
 
+@Preview
+@Composable
+fun NavigatorPreview() {
+//    ComicNavigation()
+}
 
-                data class NavigationItem(
-                    val title: String,
-                    val selectedIcon: ImageVector,
-                    val unselectedIcon: ImageVector,
-                    val badgeCount: Int? = null
-                )
+
+data class NavigationItem(
+    val title: String,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
+    val badgeCount: Int? = null,
+    val route: String,
+
+    )
+
+@Serializable
+object Favorite
+
+@Serializable
+object All

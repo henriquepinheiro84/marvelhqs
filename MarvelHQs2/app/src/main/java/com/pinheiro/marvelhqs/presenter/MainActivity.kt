@@ -5,10 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
@@ -19,11 +15,12 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginScreen
+import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItem
 import com.pinheiro.marvelhqs.presenter.ui.comic.ComicScreen
+import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteScreen
+import com.pinheiro.marvelhqs.presenter.ui.navigation.ComicNavigation
 import com.pinheiro.marvelhqs.presenter.ui.theme.MarvelHQsTheme
 import com.pinheiro.marvelhqs.presenter.ui.viewmodels.AuthViewModel
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.debounce
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
@@ -51,18 +48,20 @@ class MainActivity : ComponentActivity() {
 
                     navigation<Logged>(startDestination = Comics) {
                         composable<Comics>{
-                            ComicItem(comic = ComicViewObject(
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                            ))
+//                            ComicItem(comic = ComicViewObject(
+//                                null,
+//                                null,
+//                                null,
+//                                null,
+//                                null,
+//                                null,
+//                            ))
+//                            ComicScreen()
+                            ComicNavigation()
                         }
-                        composable<Favorite> {
-
-                        }
+//                        composable<Favorite> {
+//                            FavoriteScreen()
+//                        }
                     }
                 }
 
@@ -83,8 +82,8 @@ object Registration
 @Serializable
 object Comics
 
-@Serializable
-object Favorite
+//@Serializable
+//object Favorite
 
 @Composable
 inline fun <reified T: ViewModel>NavBackStackEntry.sharedViewModel(navController: NavController): T {

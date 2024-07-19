@@ -10,5 +10,5 @@ data class ComicDataContainerDTO(
     @SerializedName("total")
     val total: Int?,
     @SerializedName("results")
-    val results : Array<ComicDTO>
+    val results : List<ComicDTO>
 )

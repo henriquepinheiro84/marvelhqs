@@ -1,6 +1,7 @@
 package com.pinheiro.marvelhqs.domain.mapper
 
 import com.google.gson.annotations.SerializedName
+import com.pinheiro.marvelhqs.data.repository.db.realm.model.ComicRealm
 import com.pinheiro.marvelhqs.data.repository.db.room.eintitys.ComicEntity
 import com.pinheiro.marvelhqs.data.repository.network.model.CharacterListDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
@@ -30,6 +31,38 @@ fun ComicDTO.comicDTOToComicViewObjectMapper() = ComicViewObject(
     variantDescription = variantDescription,
     description = description,
     pageCount = pageCount,
+
+    )
+fun ComicViewObject.comicViewObjectToComicDTOMapper() = ComicDTO(
+    id = id,
+    title = title,
+    issueNumber = issueNumber,
+    variantDescription = variantDescription,
+    description = description,
+    pageCount = pageCount,
+    digitalId = null,
+    modified = null, // type date on the server.
+    isbn = null,
+    upc = null,
+    diamondCode = null,
+    ean = null,
+    issn = null,
+    format = null,
+    textObjects = null,
+    resourceURI = null,
+    urls = null,
+    series = null,
+    variants = null,
+    collections = null,
+    collectedIssues = null,
+    dates = null,
+    prices = null,
+    thumbnail = null,
+    images = null,
+    creators = null,
+    characters = null,
+    stories = null,
+    events = null
 
     )
 
@@ -75,10 +108,44 @@ fun ComicEntity.comicEntityToComicDTOMapper() = ComicDTO(
     events = null
 )
 
-fun Array<ComicDTO>.comicDTOListTOComicViewObjectList(): List<ComicViewObject> {
+fun List<ComicDTO>.comicDTOListTOComicViewObjectList(): List<ComicViewObject> {
     return this.map { it.comicDTOToComicViewObjectMapper() }
 }
 
 fun List<ComicEntity>.comicEntityListToComicDTOList(): List<ComicDTO> {
     return this.map { it.comicEntityToComicDTOMapper() }
+}
+fun ComicRealm.comicRealmToComicDTOMapper() = ComicDTO(
+    id = _id,
+    title = title,
+    issueNumber = issueNumber,
+    variantDescription = variantDescription,
+    description = description,
+    pageCount = pageCount,
+    digitalId = null,
+    modified = null, // type date on the server.
+    isbn = null,
+    upc = null,
+    diamondCode = null,
+    ean = null,
+    issn = null,
+    format = null,
+    textObjects = null,
+    resourceURI = null,
+    urls = null,
+    series = null,
+    variants = null,
+    collections = null,
+    collectedIssues = null,
+    dates = null,
+    prices = null,
+    thumbnail = null,
+    images = null,
+    creators = null,
+    characters = null,
+    stories = null,
+    events = null
+)
+fun List<ComicRealm>.comicRealmListToComicDTOList(): List<ComicDTO> {
+    return this.map { it.comicRealmToComicDTOMapper() }
 }
