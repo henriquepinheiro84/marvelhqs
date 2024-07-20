@@ -14,7 +14,7 @@ interface CharactersService {
         @Query("ts") ts: String,
         @Query("apikey") publicKey: String,
         @Query("hash") hash: String
-    ): Result<CharacterResponse>
+    ): CharacterResponse
 
 
 }

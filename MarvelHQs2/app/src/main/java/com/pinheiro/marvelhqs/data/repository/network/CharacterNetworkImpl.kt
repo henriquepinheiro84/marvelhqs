@@ -18,6 +18,6 @@ class CharacterNetworkImpl(
         val md = MessageDigest.getInstance("MD5")
         val hash = md.digest(codeToHash.toByteArray())
 
-        return charactersService.getCharacters(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash.toHexString())
+        return Result.success(charactersService.getCharacters(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash.toHexString()))
     }
 }
