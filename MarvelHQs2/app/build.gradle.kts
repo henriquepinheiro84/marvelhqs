@@ -1,6 +1,11 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose.compiler)
+    id("io.realm.kotlin") version "2.1.0"
 }
 
 android {
@@ -8,18 +13,40 @@ android {
     compileSdk = 34
 
     defaultConfig {
+
+
+
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(localPropertiesFile.inputStream())
+        val privateApiKey = properties.getProperty("PRIVATE_KEY")
+        val publicApiKey = properties.getProperty("PUBLIC_KEY")
+
+        buildConfigField(
+            type = "String",
+            name = "PRIVATE_KEY",
+            value = privateApiKey
+        )
+
+        buildConfigField(
+            type = "String",
+            name = "PUBLIC_KEY",
+            value = publicApiKey
+        )
+
         applicationId = "com.pinheiro.marvelhqs"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+            android.buildFeatures.buildConfig = true
         }
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -70,8 +97,6 @@ dependencies {
     implementation(libs.koin.android)
     // Pagination
     implementation(libs.androidx.paging.runtime)
-    // alternatively - without Android dependencies for tests
-    testImplementation(libs.androidx.paging.common)
     // optional - RxJava2 support
     implementation(libs.androidx.paging.rxjava2)
     // optional - RxJava3 support
@@ -87,7 +112,24 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
     implementation(libs.androidx.room.paging)
-    // optional - Test helpers
-    testImplementation(libs.androidx.room.testing)
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.logging.interceptor)
+    implementation(libs.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation( libs.koin.androidx.compose)
+    // Coil Compose
+    implementation(libs.coil.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.ui.graphics)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.material.icons.extended.android)
+    implementation(libs.paperdb)
+    implementation(libs.library.base.v210)
+    testImplementation(libs.truth)
+
 
 }

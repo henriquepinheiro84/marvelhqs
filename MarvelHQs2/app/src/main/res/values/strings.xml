@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Marvel HQs</string>
+    <string name="LOG_OUT">Log out</string>
+    <string name="FAVORITE">Favorite</string>
+    <string name="USER_LOGIN_FAILED">Usuário ou senha incorretos</string>
+    <string name="RETRIVE_COMICS_FAILED_TITLE">Erro de comunicação com o Servidor</string>
+    <string name="RETRIVE_COMICS_FAILED_MESSAGE">Ocorreu um erro na comunicação com o servidor. Por favor tente novamente mais tarde</string>
+    <string name="LOGIN_FAILED_MESSAGE">Seu usuário ou senha estão incorretos, favor tentar novamete.</string>
+    <string name="UNDERSTAND">Entendi</string>
+    <string name="LOGIN_BUTON_TITLE">Login</string>
 </resources>
