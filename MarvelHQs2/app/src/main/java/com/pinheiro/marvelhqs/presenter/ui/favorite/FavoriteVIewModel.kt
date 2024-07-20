@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.pinheiro.marvelhqs.domain.mapper.comicDTOListTOComicViewObjectList
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
-import com.pinheiro.marvelhqs.presenter.ScreenState
+import com.pinheiro.marvelhqs.presenter.ui.comic.ScreenState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch

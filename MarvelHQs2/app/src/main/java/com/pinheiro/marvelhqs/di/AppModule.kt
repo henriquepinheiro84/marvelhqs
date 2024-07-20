@@ -2,7 +2,6 @@ package com.pinheiro.marvelhqs.di
 
 import com.google.gson.GsonBuilder
 import com.pinheiro.marvelhqs.data.repository.Constants.NETWORK_BASE_URL
-import com.pinheiro.marvelhqs.data.repository.db.paper.CharacterDataBaseRepository
 import com.pinheiro.marvelhqs.data.repository.db.interfaces.ICharacterDataBaseRepository
 import com.pinheiro.marvelhqs.data.repository.db.realm.CharacterRealmRepository
 import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
@@ -13,7 +12,7 @@ import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.ValidateLoginUseCase
-import com.pinheiro.marvelhqs.presenter.MarvelViewModel
+import com.pinheiro.marvelhqs.presenter.ui.comic.MarvelViewModel
 import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginViewModel
 import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItemViewModel
 import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteVIewModel

@@ -10,7 +10,7 @@ class CharacterNetworkImpl(
     val charactersService: CharactersService
 ) : ICharacterRepository {
     @OptIn(ExperimentalStdlibApi::class)
-    override suspend fun getCharacter(limit: String, offset: String): CharacterResponse {
+    override suspend fun getCharacter(limit: String, offset: String): Result<CharacterResponse> {
         val ts = "1"
         val publicKey = BuildConfig.PUBLIC_KEY
         val privateKey = BuildConfig.PRIVATE_KEY
@@ -18,6 +18,6 @@ class CharacterNetworkImpl(
         val md = MessageDigest.getInstance("MD5")
         val hash = md.digest(codeToHash.toByteArray())
 
-        return charactersService.getCharacteres(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash.toHexString())
+        return charactersService.getCharacters(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash.toHexString())
     }
 }

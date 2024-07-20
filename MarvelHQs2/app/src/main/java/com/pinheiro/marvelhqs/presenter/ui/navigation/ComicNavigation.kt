@@ -130,13 +130,13 @@ fun ComicNavigation(mainNavController: NavHostController) {
 
                 NavHost(navController = navController, startDestination = "home") {
                     composable("home") {
-                        ComicScreen()
+                        ComicScreen(mainNavController)
                     }
                     composable("favorite") {
                         FavoriteScreen()
                     }
                     composable("exit") {
-                        navController.popBackStack()
+//                        navController.popBackStack()
                         mainNavController.navigate(Login) {
                             popUpTo(0)
                         }
