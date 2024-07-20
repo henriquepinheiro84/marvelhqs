@@ -13,7 +13,7 @@ espressoCore = "3.6.1"
 kotlinxSerializationJson = "1.7.1"
 kotlinSerialization = "2.0.0"
 libraryBase = "2.1.0"
-libraryBaseVersion = " 2.1.0"
+libraryBaseVersion = "2.1.0"
 lifecycleRuntimeKtx = "2.8.3"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
@@ -25,6 +25,7 @@ paperdb = "2.7.2"
 realmGradlePlugin = "2.1.0"
 retrofit = "2.9.0"
 roomKtx = "2.6.1"
+truth = "1.4.4"
 uiGraphics = "1.6.8"
 realm = "2.1.0"
 
@@ -65,11 +66,11 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinAndroidxCompose" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-library-base = { module = "io.realm.kotlin:library-base", version.ref = "libraryBase" }
 library-base-v210 = { module = "io.realm.kotlin:library-base", version.ref = "libraryBaseVersion" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 paperdb = { module = "io.github.pilgr:paperdb", version.ref = "paperdb" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "uiGraphics" }
 
 [plugins]

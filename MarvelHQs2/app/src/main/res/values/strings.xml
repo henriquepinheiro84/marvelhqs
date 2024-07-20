@@ -2,4 +2,7 @@
     <string name="app_name">Marvel HQs</string>
     <string name="LOG_OUT">Log out</string>
     <string name="FAVORITE">Favorite</string>
+    <string name="USER_LOGIN_FAILED">Usuário ou senha incorretos</string>
+    <string name="LOGIN_FAILED_MESSAGE">Seu usuário ou senha estão incorretos, favor tentar novamete.</string>
+    <string name="UNDERSTAND">Entendi</string>
 </resources>

@@ -32,7 +32,6 @@ fun PasswordField(
     label: String = "Senha",
     placeholder: String = "Digite sua senha"
 ) {
-    val focusManager = LocalFocusManager.current
     var isPasswordVisible by remember { mutableStateOf(false) }
 
     val leadingIcon = @Composable {

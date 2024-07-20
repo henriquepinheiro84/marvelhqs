@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
-    id("io.realm.kotlin")
+    id("io.realm.kotlin") version "2.1.0"
 }
 
 android {
@@ -97,8 +97,6 @@ dependencies {
     implementation(libs.koin.android)
     // Pagination
     implementation(libs.androidx.paging.runtime)
-    // alternatively - without Android dependencies for tests
-    testImplementation(libs.androidx.paging.common)
     // optional - RxJava2 support
     implementation(libs.androidx.paging.rxjava2)
     // optional - RxJava3 support
@@ -114,8 +112,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
     implementation(libs.androidx.room.paging)
-    // optional - Test helpers
-    testImplementation(libs.androidx.room.testing)
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
@@ -132,7 +128,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.material.icons.extended.android)
     implementation(libs.paperdb)
-    implementation(libs.library.base)
     implementation(libs.library.base.v210)
+    testImplementation(libs.truth)
+
 
 }

@@ -41,9 +41,6 @@ fun FavoriteScreen() {
         }
         items(favorites.value.size) { i ->
             val item = favorites.value[i]
-            //            if (i >= state.items.size - 1 && !state.endReached && !state.isLoading) {
-            //                viewModel.getCharacters()
-            //            }
             ComicItem(
                 comic = item,
                 modifier = Modifier.fillMaxWidth(),

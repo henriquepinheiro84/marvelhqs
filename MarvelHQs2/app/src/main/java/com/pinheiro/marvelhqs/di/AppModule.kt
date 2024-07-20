@@ -12,7 +12,9 @@ import com.pinheiro.marvelhqs.domain.usecase.DeleteFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
+import com.pinheiro.marvelhqs.domain.usecase.ValidateLoginUseCase
 import com.pinheiro.marvelhqs.presenter.MarvelViewModel
+import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginViewModel
 import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItemViewModel
 import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteVIewModel
 import okhttp3.OkHttpClient
@@ -43,14 +45,20 @@ single<CharactersService> {
     viewModel {
         MarvelViewModel(get(), get())
     }
+    viewModel {
+        LoginViewModel(get())
+    }
+    viewModel {
+        ComicItemViewModel(get(), get())
+    }
 
 
 
     factory { SaveFavoriteUseCase(get()) }
-    factory { ComicItemViewModel(get(), get()) }
     factory { FavoriteVIewModel(get()) }
     factory { GetFavoriteUseCase(get()) }
     factory { DeleteFavoriteUseCase(get()) }
+    factory { ValidateLoginUseCase() }
     factory { CharacterRealmRepository() } bind ICharacterDataBaseRepository::class
 
 }
