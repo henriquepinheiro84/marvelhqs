@@ -89,7 +89,7 @@ fun LoginScreen(navController: NavController) {
             Spacer(modifier = Modifier.padding(horizontal = 18.dp))
             LogButton(text = "Login") {
                 openAlertDialog = !viewModel.validateUser(credencials.user, credencials.password)
-                    if (viewModel.validateUser(credencials.user, credencials.password)) {
+                if (viewModel.validateUser(credencials.user, credencials.password)) {
                     navController.navigate(Logged) {
                         popUpTo(0)
                     }
@@ -128,7 +128,8 @@ fun LoginScreen(navController: NavController) {
                         .background(MaterialTheme.colorScheme.surface)
                         .padding(16.dp)
                 ) {
-                    Text(text = stringResource(id = R.string.USER_LOGIN_FAILED),
+                    Text(
+                        text = stringResource(id = R.string.USER_LOGIN_FAILED),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
