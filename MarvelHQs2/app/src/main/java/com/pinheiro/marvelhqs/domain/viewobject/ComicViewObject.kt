@@ -10,6 +10,5 @@ data class ComicViewObject(
     val variantDescription: String?,
     val description: String?,
     val pageCount: Int?,
-//    val images: ArrayList<ImageDTO>?,
-//    val thumbnail: ImageDTO?,
+    val thumbnail: String?,
 )

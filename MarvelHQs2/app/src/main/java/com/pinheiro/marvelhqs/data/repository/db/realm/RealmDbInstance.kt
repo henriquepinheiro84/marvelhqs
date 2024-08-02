@@ -8,12 +8,13 @@ import io.realm.kotlin.RealmConfiguration
 object RealmDbInstance {
     fun getRealmDB(): Realm {
         return  Realm.open(
-            configuration = RealmConfiguration.create(
+            configuration = RealmConfiguration.Builder(
                 schema = setOf(
                     ComicRealm::class
-
                 )
             )
+                .schemaVersion(1)
+                .build()
         )
     }
 }

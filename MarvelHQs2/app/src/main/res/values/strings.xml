@@ -8,4 +8,7 @@
     <string name="LOGIN_FAILED_MESSAGE">Seu usuário ou senha estão incorretos, favor tentar novamete.</string>
     <string name="UNDERSTAND">Entendi</string>
     <string name="LOGIN_BUTON_TITLE">Login</string>
+    <string name="NO_TITLE">No title</string>
+    <string name="NUMBER_OF_PAGES_NOT_INFORMED">Not informed</string>
+    <string name="NUMBER_OF_PAGES_TITLE">Number of pages: %d</string>
 </resources>

@@ -12,10 +12,10 @@ import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.ValidateLoginUseCase
-import com.pinheiro.marvelhqs.presenter.ui.comic.MarvelViewModel
-import com.pinheiro.marvelhqs.presenter.ui.authentication.LoginViewModel
-import com.pinheiro.marvelhqs.presenter.ui.comic.ComicItemViewModel
-import com.pinheiro.marvelhqs.presenter.ui.favorite.FavoriteVIewModel
+import com.pinheiro.marvelhqs.presentation.ui.comic.MarvelViewModel
+import com.pinheiro.marvelhqs.presentation.ui.authentication.LoginViewModel
+import com.pinheiro.marvelhqs.presentation.ui.comic.ComicItemViewModel
+import com.pinheiro.marvelhqs.presentation.ui.favorite.FavoriteVIewModel
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.bind

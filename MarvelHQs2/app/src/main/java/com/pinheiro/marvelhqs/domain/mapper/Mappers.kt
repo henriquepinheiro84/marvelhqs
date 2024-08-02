@@ -31,8 +31,14 @@ fun ComicDTO.comicDTOToComicViewObjectMapper() = ComicViewObject(
     variantDescription = variantDescription,
     description = description,
     pageCount = pageCount,
+    thumbnail = "${
+        thumbnail
+            ?.path
+            ?.replace("http:", "https:")
+    }.${thumbnail?.extension}"
 
-    )
+)
+
 fun ComicViewObject.comicViewObjectToComicDTOMapper() = ComicDTO(
     id = id,
     title = title,
@@ -57,64 +63,22 @@ fun ComicViewObject.comicViewObjectToComicDTOMapper() = ComicDTO(
     collectedIssues = null,
     dates = null,
     prices = null,
-    thumbnail = null,
+    thumbnail = ImageDTO(
+        path = thumbnail?.substringBefore(".jpg"),
+        extension = "jpg"
+    ),
     images = null,
     creators = null,
     characters = null,
     stories = null,
     events = null
 
-    )
-
-fun ComicDTO.comicDTOToComicEntityMapper() = ComicEntity(
-    id = id,
-    title = title,
-    issueNumber = issueNumber,
-    variantDescription = variantDescription,
-    description = description,
-    pageCount = pageCount,
-
-    )
-
-fun ComicEntity.comicEntityToComicDTOMapper() = ComicDTO(
-    id = id,
-    title = title,
-    issueNumber = issueNumber,
-    variantDescription = variantDescription,
-    description = description,
-    pageCount = pageCount,
-    digitalId = null,
-    modified = null, // type date on the server.
-    isbn = null,
-    upc = null,
-    diamondCode = null,
-    ean = null,
-    issn = null,
-    format = null,
-    textObjects = null,
-    resourceURI = null,
-    urls = null,
-    series = null,
-    variants = null,
-    collections = null,
-    collectedIssues = null,
-    dates = null,
-    prices = null,
-    thumbnail = null,
-    images = null,
-    creators = null,
-    characters = null,
-    stories = null,
-    events = null
 )
 
 fun List<ComicDTO>.comicDTOListTOComicViewObjectList(): List<ComicViewObject> {
     return this.map { it.comicDTOToComicViewObjectMapper() }
 }
 
-fun List<ComicEntity>.comicEntityListToComicDTOList(): List<ComicDTO> {
-    return this.map { it.comicEntityToComicDTOMapper() }
-}
 fun ComicRealm.comicRealmToComicDTOMapper() = ComicDTO(
     id = _id,
     title = title,
@@ -139,13 +103,27 @@ fun ComicRealm.comicRealmToComicDTOMapper() = ComicDTO(
     collectedIssues = null,
     dates = null,
     prices = null,
-    thumbnail = null,
+    thumbnail = ImageDTO(
+        path = thumbnail?.substringBefore(".jpg"),
+        extension = "jpg"
+    ),
     images = null,
     creators = null,
     characters = null,
     stories = null,
     events = null
 )
+
+fun ComicRealm.comicRealmToComicViewObjectMapper() = ComicViewObject(
+    id = _id,
+    title = title,
+    issueNumber = issueNumber,
+    variantDescription = variantDescription,
+    description = description,
+    pageCount = pageCount,
+    thumbnail = thumbnail,
+)
+
 fun List<ComicRealm>.comicRealmListToComicDTOList(): List<ComicDTO> {
     return this.map { it.comicRealmToComicDTOMapper() }
 }
