@@ -2,9 +2,7 @@ package com.pinheiro.marvelhqs.domain.mapper
 
 import com.pinheiro.marvelhqs.data.repository.db.realm.model.ComicRealm
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.ComicDataContainerDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ImageDTO
-import com.pinheiro.marvelhqs.domain.viewobject.ComicDataContainerViewObject
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 
 
@@ -98,15 +96,6 @@ fun ComicRealm.comicRealmToComicDTOMapper() = ComicDTO(
     events = null
 )
 
-fun ComicRealm.comicRealmToComicViewObjectMapper() = ComicViewObject(
-    id = _id,
-    title = title,
-    issueNumber = issueNumber,
-    variantDescription = variantDescription,
-    description = description,
-    pageCount = pageCount,
-    thumbnail = thumbnail,
-)
 
 fun List<ComicRealm>.comicRealmListToComicDTOList(): List<ComicDTO> {
     return this.map { it.comicRealmToComicDTOMapper() }

@@ -3,12 +3,6 @@ package com.pinheiro.marvelhqs.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -21,7 +15,6 @@ import com.pinheiro.marvelhqs.presentation.ui.navigation.Logged
 import com.pinheiro.marvelhqs.presentation.ui.navigation.Login
 import com.pinheiro.marvelhqs.presentation.ui.navigation.Registration
 import com.pinheiro.marvelhqs.presentation.ui.theme.MarvelHQsTheme
-import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -43,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     navigation<Logged>(startDestination = Comics) {
-                        composable<Comics>{
+                        composable<Comics> {
 
                             ComicNavigation(navController)
                         }
@@ -54,13 +47,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-inline fun <reified T: ViewModel>NavBackStackEntry.sharedViewModel(navController: NavController): T {
-    val navGraphRoute = destination.parent?.route ?: return koinViewModel()
-    val parentEntery = remember(this) {
-        navController.getBackStackEntry(navGraphRoute)
-    }
-    return viewModel(parentEntery)
 }
