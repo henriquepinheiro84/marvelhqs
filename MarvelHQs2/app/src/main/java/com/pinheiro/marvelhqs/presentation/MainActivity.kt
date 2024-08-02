@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
 
                     navigation<Logged>(startDestination = Comics) {
                         composable<Comics> {
-
                             ComicNavigation(navController)
                         }
 

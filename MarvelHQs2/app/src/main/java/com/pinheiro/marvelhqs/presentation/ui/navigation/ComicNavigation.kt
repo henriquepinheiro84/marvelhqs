@@ -43,7 +43,6 @@ import com.pinheiro.marvelhqs.presentation.ui.favorite.FavoriteScreen
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComicNavigation(mainNavController: NavHostController) {
     val items = listOf(
@@ -136,7 +135,6 @@ fun ComicNavigation(mainNavController: NavHostController) {
                         FavoriteScreen()
                     }
                     composable("exit") {
-//                        navController.popBackStack()
                         mainNavController.navigate(Login) {
                             popUpTo(0)
                         }

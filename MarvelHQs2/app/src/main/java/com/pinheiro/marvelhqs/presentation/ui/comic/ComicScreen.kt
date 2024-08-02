@@ -54,7 +54,7 @@ fun ComicScreen(mainNavController: NavHostController) {
 
         items(state.items.size) { i ->
             val item = state.items[i]
-            val teste = favorites.value.contains(item)
+            val isFavorite = favorites.value.find { it.id == item.id } != null
             if (i >= state.items.size - 1 && !state.endReached && !state.isLoading) {
                 viewModel.getCharacters()
                 viewModel.getFavoritesFromDB()
@@ -62,7 +62,7 @@ fun ComicScreen(mainNavController: NavHostController) {
             ComicItem(
                 comic = item,
                 modifier = Modifier.fillMaxWidth(),
-                isFavoriteSelected = teste
+                isFavoriteSelected = isFavorite
             )
         }
         item {
