@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Output
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
