@@ -1,28 +1,12 @@
 package com.pinheiro.marvelhqs.domain.mapper
 
-import com.google.gson.annotations.SerializedName
 import com.pinheiro.marvelhqs.data.repository.db.realm.model.ComicRealm
-import com.pinheiro.marvelhqs.data.repository.db.room.eintitys.ComicEntity
-import com.pinheiro.marvelhqs.data.repository.network.model.CharacterListDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDataContainerDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.ComicDateDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.ComicPriceDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.ComicSummaryDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.CreatorListDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.EventListDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ImageDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.SeriesSummaryDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.StoryListDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.TextObjectDTO
-import com.pinheiro.marvelhqs.data.repository.network.model.UrlDTO
 import com.pinheiro.marvelhqs.domain.viewobject.ComicDataContainerViewObject
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 
-fun ComicDataContainerDTO.comicDataContainerDTOToComicDataContainerViewObjectMapper() =
-    ComicDataContainerViewObject(
-        this.results
-    )
 
 fun ComicDTO.comicDTOToComicViewObjectMapper() = ComicViewObject(
     id = id,

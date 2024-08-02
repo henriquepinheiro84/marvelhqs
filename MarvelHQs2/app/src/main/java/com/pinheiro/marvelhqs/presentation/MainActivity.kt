@@ -56,10 +56,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-//@Serializable
-//object Favorite
-
 @Composable
 inline fun <reified T: ViewModel>NavBackStackEntry.sharedViewModel(navController: NavController): T {
     val navGraphRoute = destination.parent?.route ?: return koinViewModel()
