@@ -7,17 +7,10 @@ import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
 import java.security.MessageDigest
 
 class CharacterNetworkImpl(
-    val charactersService: CharactersService
+    private val charactersService: CharactersService
 ) : ICharacterRepository {
-    @OptIn(ExperimentalStdlibApi::class)
-    override suspend fun getCharacter(limit: String, offset: String): Result<CharacterResponse> {
-        val ts = "1"
-        val publicKey = BuildConfig.PUBLIC_KEY
-        val privateKey = BuildConfig.PRIVATE_KEY
-        val codeToHash = ts + privateKey + publicKey
-        val md = MessageDigest.getInstance("MD5")
-        val hash = md.digest(codeToHash.toByteArray())
+    override suspend fun getCharacter(limit: String, offset: String, ts: String, hash: String): Result<CharacterResponse> {
 
-        return Result.success(charactersService.getCharacters(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash.toHexString()))
+        return Result.success(charactersService.getCharacters(limit,offset,ts, BuildConfig.PUBLIC_KEY,hash))
     }
 }

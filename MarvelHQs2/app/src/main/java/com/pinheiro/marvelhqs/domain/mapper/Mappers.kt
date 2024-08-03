@@ -3,6 +3,7 @@ package com.pinheiro.marvelhqs.domain.mapper
 import com.pinheiro.marvelhqs.data.repository.db.realm.model.ComicRealm
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
 import com.pinheiro.marvelhqs.data.repository.network.model.ImageDTO
+import com.pinheiro.marvelhqs.domain.extensions.httpToHttps
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 
 
@@ -16,7 +17,7 @@ fun ComicDTO.comicDTOToComicViewObjectMapper() = ComicViewObject(
     thumbnail = "${
         thumbnail
             ?.path
-            ?.replace("http:", "https:")
+            ?.httpToHttps()
     }.${thumbnail?.extension}"
 
 )

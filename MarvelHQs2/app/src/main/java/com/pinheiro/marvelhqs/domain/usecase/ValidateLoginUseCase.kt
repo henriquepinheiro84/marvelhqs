@@ -1,7 +1,5 @@
 package com.pinheiro.marvelhqs.domain.usecase
 
-import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
-
 class ValidateLoginUseCase {
     val mockUsers = mutableListOf(
         MockUser("admin",

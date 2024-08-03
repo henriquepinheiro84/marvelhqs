@@ -10,6 +10,7 @@ import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
 import com.pinheiro.marvelhqs.domain.usecase.DeleteFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetCharactersUseCase
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
+import com.pinheiro.marvelhqs.domain.usecase.GetServerHashUseCase
 import com.pinheiro.marvelhqs.domain.usecase.SaveFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.usecase.ValidateLoginUseCase
 import com.pinheiro.marvelhqs.presentation.ui.comic.MarvelViewModel
@@ -36,7 +37,7 @@ single<CharactersService> {
         .build()
         .create(CharactersService::class.java)
 }
-    factory { GetCharactersUseCase(get()) }
+    factory { GetCharactersUseCase(get(), get()) }
     single {
         CharacterNetworkImpl(get())
     } bind ICharacterRepository::class
@@ -58,6 +59,7 @@ single<CharactersService> {
     factory { GetFavoriteUseCase(get()) }
     factory { DeleteFavoriteUseCase(get()) }
     factory { ValidateLoginUseCase() }
+    factory { GetServerHashUseCase() }
     factory { CharacterRealmRepository() } bind ICharacterDataBaseRepository::class
 
 }
