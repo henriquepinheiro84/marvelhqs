@@ -10,7 +10,9 @@ import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.presentation.ui.comic.ScreenState
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class FavoriteVIewModel(
@@ -19,41 +21,12 @@ class FavoriteVIewModel(
 
     var state by mutableStateOf(ScreenState())
 
-    private val _favorites = MutableSharedFlow<List<ComicViewObject>>()
-    val favorites = _favorites.asSharedFlow()
+    private val _favorites = MutableStateFlow<List<ComicViewObject>>(listOf())
+    val favorites = _favorites.asStateFlow()
     init {
         getFavorites()
     }
 
-
-//    private val paginator = DefaultPaginator(
-//        initialKey = state.page,
-//        onLoadUpdated = {
-//            state = state.copy(isLoading = it)
-//        },
-//        onRequest = { nextPage ->
-//
-//
-//        },
-//        getNextKey = {
-//            state.page + 16
-//        },
-//        onError = {
-//            state = state.copy(error = it?.localizedMessage)
-//        },
-//        onSuccess = { items, newKey ->
-//            state = state.copy(
-//                items = state.items + items,
-//                page = newKey,
-//                endReached = items.isEmpty()
-//            )
-//        }
-//    )
-//    init {
-//        viewModelScope.launch {
-//            paginator.loadNextItems()
-//        }
-//    }
 private fun getFavorites() {
        viewModelScope.launch {
            getFavoriteUseCase().collect{comicsDTO ->

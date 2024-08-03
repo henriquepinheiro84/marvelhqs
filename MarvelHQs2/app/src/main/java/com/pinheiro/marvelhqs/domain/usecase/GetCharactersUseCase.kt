@@ -14,11 +14,6 @@ class GetCharactersUseCase(
         try {
             val ts = "1"
             val hash = getServerHashUseCase(ts)
-//            val publicKey = BuildConfig.PUBLIC_KEY
-//            val privateKey = BuildConfig.PRIVATE_KEY
-//            val codeToHash = ts + privateKey + publicKey
-//            val md = MessageDigest.getInstance("MD5")
-//            val hash = md.digest(codeToHash.toByteArray()).toHexString()
             val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset, ts, hash)
             if (comicDataWrapper.isSuccess) {
 
