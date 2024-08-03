@@ -9,9 +9,7 @@ import com.pinheiro.marvelhqs.domain.mapper.comicDTOListTOComicViewObjectList
 import com.pinheiro.marvelhqs.domain.usecase.GetFavoriteUseCase
 import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import com.pinheiro.marvelhqs.presentation.ui.comic.ScreenState
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -23,18 +21,19 @@ class FavoriteVIewModel(
 
     private val _favorites = MutableStateFlow<List<ComicViewObject>>(listOf())
     val favorites = _favorites.asStateFlow()
+
     init {
         getFavorites()
     }
 
-private fun getFavorites() {
-       viewModelScope.launch {
-           getFavoriteUseCase().collect{comicsDTO ->
-               comicsDTO?.let {
-                   _favorites.emit(it.comicDTOListTOComicViewObjectList())
-               }
-           }
-       }
+    private fun getFavorites() {
+        viewModelScope.launch {
+            getFavoriteUseCase().collect { comicsDTO ->
+                comicsDTO?.let {
+                    _favorites.emit(it.comicDTOListTOComicViewObjectList())
+                }
+            }
+        }
 
     }
 }
