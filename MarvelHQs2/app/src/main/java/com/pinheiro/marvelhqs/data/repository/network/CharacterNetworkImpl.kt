@@ -4,7 +4,6 @@ import com.pinheiro.marvelhqs.BuildConfig
 import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.response.CharacterResponse
 import com.pinheiro.marvelhqs.data.repository.network.service.CharactersService
-import java.security.MessageDigest
 
 class CharacterNetworkImpl(
     private val charactersService: CharactersService
