@@ -1,3 +1,5 @@
+import environments.Dev
+import environments.Prod
 import java.util.Properties
 
 plugins {
@@ -13,8 +15,6 @@ android {
     compileSdk = 34
 
     defaultConfig {
-
-
 
         val localPropertiesFile = project.rootProject.file("local.properties")
         val properties = Properties()
@@ -34,6 +34,7 @@ android {
             value = publicApiKey
         )
 
+
         applicationId = "com.pinheiro.marvelhqs"
         minSdk = 24
         targetSdk = 34
@@ -48,14 +49,37 @@ android {
         }
     }
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                Prod.NETWORK_BASE_URL
+
+                )
+
         }
+        getByName("debug") {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                Dev.NETWORK_BASE_URL
+
+            )
+
+        }
+
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -119,7 +143,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel)
-    implementation( libs.koin.androidx.compose)
+    implementation(libs.koin.androidx.compose)
     // Coil Compose
     implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))

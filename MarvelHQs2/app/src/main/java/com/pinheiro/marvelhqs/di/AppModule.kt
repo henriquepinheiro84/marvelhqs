@@ -1,7 +1,7 @@
 package com.pinheiro.marvelhqs.di
 
 import com.google.gson.GsonBuilder
-import com.pinheiro.marvelhqs.data.repository.Constants.NETWORK_BASE_URL
+import com.pinheiro.marvelhqs.BuildConfig
 import com.pinheiro.marvelhqs.data.repository.db.interfaces.ICharacterDataBaseRepository
 import com.pinheiro.marvelhqs.data.repository.db.realm.CharacterRealmRepository
 import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
@@ -33,7 +33,7 @@ single<CharactersService> {
         .readTimeout(TIME_OUT, TimeUnit.MINUTES)
         .build())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .baseUrl(NETWORK_BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL)
         .build()
         .create(CharactersService::class.java)
 }
