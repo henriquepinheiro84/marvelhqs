@@ -6,7 +6,6 @@ O seu intuito é realizar um login e recuperara da api forneceda os dados os mos
 Os itens que são favoirtado devem ser salvos em um banco de dados local e recuperados em uma terceira tela específica para os favoritos.
 
 ### Telas
-
 Para o desenvolvimento das telas foi utilizado o Jatpack Compose.
 
 O Aplicativo tem 3 telas -> LoginScreen, ComicScreen e FavoriteScreen
@@ -20,7 +19,7 @@ Para recuperar os dados foi utilizada a [api da marvel](https://developer.marvel
 
 ## Como rodar o projeto
 
-Para rodar esse código é necessário ter um cadastro [plataforma da api] e, uma vez baixado o código da branch main, deve-se colocar no arquivo local.properties, duas variávies PUBLIC_KEY e PRIVATE_KEY. Nessas variáveis deve-se colocar as chaves publica e privada respectivamente.
+Para rodar esse código é necessário ter um cadastro na [plataforma da api](https://developer.marvel.com/) e, uma vez baixado o código da branch main, deve-se colocar no arquivo local.properties, duas variávies PUBLIC_KEY e PRIVATE_KEY. Nessas variáveis deve-se colocar as chaves publica e privada respectivamente.
 
 ![image](https://github.com/user-attachments/assets/ed63ca68-aa24-48ad-bc00-723be8a926f8)
 
