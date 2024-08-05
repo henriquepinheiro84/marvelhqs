@@ -27,7 +27,7 @@ import org.junit.Test
 
 class MarvelsEndToEndTest {
 
-    @get:Rule
+    @get:Rule(order = 1)
     val composeRule = createComposeRule()
 
     @Before
@@ -72,7 +72,7 @@ class MarvelsEndToEndTest {
 // Navigation to Favorite
         composeRule.onNodeWithText(context.getString((R.string.FAVORITE))).performClick()
         composeRule.onNodeWithText(context.getString(R.string.TOP_BAR_TITLE)).isDisplayed()
-        //Logout
+//        //Logout
         composeRule.onNodeWithText(context.getString((R.string.LOG_OUT))).performClick()
         composeRule.onNodeWithText(context.getString(R.string.TOP_BAR_TITLE)).isNotDisplayed()
 
