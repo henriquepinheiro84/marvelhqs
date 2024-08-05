@@ -1,7 +1,7 @@
 package com.pinheiro.marvelhqs.domain.usecase
 
 import com.google.common.truth.Truth
-import com.pinheiro.marvelhqs.data.repository.FakeCharacterRepository
+import com.pinheiro.marvelhqs.data.repository.network.FakeCharacterRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

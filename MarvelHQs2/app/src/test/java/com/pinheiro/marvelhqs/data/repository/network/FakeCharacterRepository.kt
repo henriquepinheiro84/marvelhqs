@@ -1,4 +1,4 @@
-package com.pinheiro.marvelhqs.data.repository
+package com.pinheiro.marvelhqs.data.repository.network
 
 import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
