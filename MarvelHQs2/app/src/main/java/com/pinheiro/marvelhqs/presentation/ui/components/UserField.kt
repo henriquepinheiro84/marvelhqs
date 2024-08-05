@@ -12,17 +12,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.pinheiro.marvelhqs.R
 
 @Composable
 fun UserField(
     value: String,
     onChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "Usuário",
-    placeholder: String = "Digite o seu Usuário"
+    label: String = stringResource(R.string.USER_TITLE),
+    placeholder: String = stringResource(R.string.USER_PLACEHOLDER)
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -37,7 +40,7 @@ fun UserField(
     TextField(
         value = value,
         onValueChange = onChange,
-        modifier = modifier,
+        modifier = modifier.testTag(stringResource(id = R.string.USER_TEST_TAG)),
         leadingIcon = leadingIcon,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         keyboardActions = KeyboardActions(

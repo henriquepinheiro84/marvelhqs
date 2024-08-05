@@ -11,4 +11,11 @@
     <string name="NO_TITLE">No title</string>
     <string name="NUMBER_OF_PAGES_NOT_INFORMED">Not informed</string>
     <string name="NUMBER_OF_PAGES_TITLE">Number of pages: %d</string>
+    <string name="PASSOWRD_PLACEHOLDER">Digite sua senha</string>
+    <string name="PASSWORD_TITLE">Senha</string>
+    <string name="USER_PLACEHOLDER">Digite o seu Usuário</string>
+    <string name="USER_TITLE">Usuário</string>
+    <string name="USER_TEST_TAG">USER_TEST_TAG</string>
+    <string name="PASSWORD_TEST_TAG">PASSWORD_TEST_TAG</string>
+    <string name="TOP_BAR_TITLE">Marvel</string>
 </resources>

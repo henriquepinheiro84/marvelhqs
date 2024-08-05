@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
+import com.pinheiro.marvelhqs.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -18,7 +20,7 @@ fun MarvelTopAppBar(drawerState: DrawerState) {
     val scope = rememberCoroutineScope()
    return TopAppBar(
         title = {
-            Text(text = "Marvel")
+            Text(text = stringResource(R.string.TOP_BAR_TITLE))
         },
         navigationIcon = {
             IconButton(onClick = {

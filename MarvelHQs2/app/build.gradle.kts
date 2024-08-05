@@ -42,7 +42,7 @@ android {
         versionName = "1.0"
 
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.pinheiro.marvelhqs.di.InstrumentationTestRunner"
         vectorDrawables {
             useSupportLibrary = true
             android.buildFeatures.buildConfig = true

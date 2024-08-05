@@ -22,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,13 +61,17 @@ fun LoginScreen(navController: NavController) {
                     credencials = credencials.copy(user = data)
                 })
             PasswordField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag(stringResource(id = R.string.PASSWORD_TEST_TAG)),
                 value = credencials.password,
                 onChange = { data ->
                     credencials = credencials.copy(password = data)
                 },
                 submit = { })
-            Spacer(modifier = Modifier.padding(horizontal = 18.dp))
+            Spacer(modifier = Modifier
+                .padding(horizontal = 18.dp)
+                .testTag("LoginButton"))
             LogButton(text = stringResource(R.string.LOGIN_BUTON_TITLE)) {
                 openAlertDialog = !viewModel.validateUser(credencials.user, credencials.password)
                 if (viewModel.validateUser(credencials.user, credencials.password)) {

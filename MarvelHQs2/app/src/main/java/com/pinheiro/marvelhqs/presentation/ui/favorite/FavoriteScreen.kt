@@ -24,7 +24,6 @@ fun FavoriteScreen() {
     val viewModel: FavoriteVIewModel = koinViewModel()
     val state = viewModel.state
     val lazeListState = rememberLazyListState()
-//    viewModel.getCharacters()
 
 
     val favorites = viewModel.favorites.collectAsStateWithLifecycle(listOf())

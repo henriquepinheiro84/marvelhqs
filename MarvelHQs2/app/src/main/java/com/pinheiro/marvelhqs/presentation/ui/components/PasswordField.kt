@@ -17,10 +17,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import com.pinheiro.marvelhqs.R
 
 @Composable
 fun PasswordField(
@@ -28,8 +31,8 @@ fun PasswordField(
     onChange: (String) -> Unit,
     submit: () -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "Senha",
-    placeholder: String = "Digite sua senha"
+    label: String = stringResource(R.string.PASSWORD_TITLE),
+    placeholder: String = stringResource(R.string.PASSOWRD_PLACEHOLDER)
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
@@ -53,7 +56,7 @@ fun PasswordField(
     TextField(
         value = value,
         onValueChange = onChange,
-        modifier = modifier,
+        modifier = modifier.testTag(stringResource(R.string.PASSWORD_TEST_TAG)),
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         keyboardOptions = KeyboardOptions(
