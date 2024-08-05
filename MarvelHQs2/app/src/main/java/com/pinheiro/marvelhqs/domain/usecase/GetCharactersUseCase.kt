@@ -6,13 +6,15 @@ import com.pinheiro.marvelhqs.domain.viewobject.ComicViewObject
 import java.util.concurrent.TimeoutException
 
 class GetCharactersUseCase(
-    private val characterNetworkRepository: ICharacterRepository
+    private val characterNetworkRepository: ICharacterRepository,
+    private val getServerHashUseCase: GetServerHashUseCase
 ) {
-
 
     suspend operator fun invoke(limit: String, offset: String): Result<List<ComicViewObject>> {
         try {
-            val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset)
+            val ts = "1"
+            val hash = getServerHashUseCase(ts)
+            val comicDataWrapper = characterNetworkRepository.getCharacter(limit, offset, ts, hash)
             if (comicDataWrapper.isSuccess) {
 
                 val comicDataContainer = comicDataWrapper.getOrNull()?.data

@@ -47,7 +47,9 @@ class LoginUnitTest {
             "admin",
             "admin",
         )
-        Truth.assertThat("test" == "test").isTrue()
+        Truth.assertThat(result).isTrue()
 
-    }
+    } // Realizar teste de interfaces. - Até segunda feira.
+    // Entregar os testes - Mandar para o cliente.
+    // Posso corrigir o códiog também.
 }

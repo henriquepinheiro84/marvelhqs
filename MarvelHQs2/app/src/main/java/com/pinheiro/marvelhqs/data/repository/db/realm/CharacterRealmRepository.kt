@@ -2,14 +2,8 @@ package com.pinheiro.marvelhqs.data.repository.db.realm
 
 import com.pinheiro.marvelhqs.data.repository.db.interfaces.ICharacterDataBaseRepository
 import com.pinheiro.marvelhqs.data.repository.db.realm.model.ComicRealm
-import com.pinheiro.marvelhqs.data.repository.network.interfaces.ICharacterRepository
 import com.pinheiro.marvelhqs.data.repository.network.model.ComicDTO
-import com.pinheiro.marvelhqs.data.repository.network.response.CharacterResponse
-import com.pinheiro.marvelhqs.domain.mapper.comicDTOToComicEntityMapper
 import com.pinheiro.marvelhqs.domain.mapper.comicRealmListToComicDTOList
-import com.pinheiro.marvelhqs.presenter.MainApplication
-import io.realm.kotlin.MutableRealm
-import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.flow.Flow
@@ -25,6 +19,7 @@ class CharacterRealmRepository : ICharacterDataBaseRepository {
                 comicDTO.issueNumber?.let { issueNumber = it }
                 comicDTO.variantDescription?.let { variantDescription = it }
                 comicDTO.description?.let { description = it }
+                comicDTO.thumbnail?.let { thumbnail = "${it.path}.${it.extension}" }
             }
             copyToRealm(instance = comic, updatePolicy = UpdatePolicy.ALL)
         }

@@ -11,4 +11,5 @@ class ComicRealm : RealmObject {
     var variantDescription: String? = null
     var description: String? = null
     var pageCount: Int? = null
+    var thumbnail: String? = null
 }
